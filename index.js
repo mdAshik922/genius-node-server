@@ -1,9 +1,11 @@
 const express = require('express');
 const app = (express());
+
 require('dotenv').config()
 const ObjectId = require('mongodb').ObjectId;
-const port = process.env.PORT || 5000;
+
 const cors = require('cors')
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
@@ -18,6 +20,7 @@ async function run() {
       const database = client.db('genius_car');
       const serviceCollection = database.collection('services');
 
+      //GET ALL DATA
       app.get('/users', async(req, res) =>{
               const users = serviceCollection.find({});
               const allUsers = await users.toArray();
